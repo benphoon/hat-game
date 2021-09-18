@@ -1,3 +1,4 @@
+// Game Logic
 const prompt = require("prompt-sync")({ sigint: true });
 
 const hat = "^";
@@ -7,7 +8,7 @@ const pathCharacter = "*";
 
 class Field {
     constructor(fieldArray) {
-        this._fieldArray = fieldArray;
+        this._fieldArray = fieldArray
     }
 
     print() {
@@ -21,19 +22,21 @@ class Field {
         for (var i = 0; i < height; i++) {
             result[i] = []
             for (var j = 0; j < width; j++) {
-                result[i][j] = '*'
+                result[i][j] = '░'
             }
         }
+        return result;
     }
 }
 
-const myField = Field.generateField(5, 5)
-console.log(myField)
-new Field(myField)
 
+// Program Start
 const name = prompt("What is your name?");
 console.log(`Hi ${name}, let's find the hat!`);
+console.log("You are here '*', explore the field '░' to find your hat '^' and mind the gaps 'O'.")
 
-// myField.print();
+let myField = new Field(Field.generateField(4,4))
+myField.print()
 
+// Movement Loop
 const move = prompt("Which direction do you want to go?");
