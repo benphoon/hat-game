@@ -11,12 +11,27 @@ class Field {
         this._fieldArray = fieldArray;
         this._playerPositionVertical = 0;
         this._playerPositionHorizontal = 0;
+        this._hatPositionVertical = 0;
+        this._hatPositionHorizontal = 0;
     }
 
     print() {
         for (var i = 0; i < this._fieldArray.length; i++) {
             console.log(this._fieldArray[i].join(""));
         }
+    }
+
+    findHat(){
+        let hatPosition = []
+        for (var i = 0; i < this._fieldArray.length; i++) {
+            var index = this._fieldArray[i].indexOf('^');
+            if (index > -1) {
+                hatPosition = [i, index]
+                this._hatPositionVertical = hatPosition[0];
+                this._hatPositionHorizontal = hatPosition[1];
+            }
+        }
+        console.log(this._hatPositionVertical, this._hatPositionHorizontal)
     }
 
     move() {
@@ -49,9 +64,9 @@ class Field {
     }
 
     checkWin() {
-        if (this._playerPosition === hatPosition) {
+        if (this._playerPositionVertical === this._hatPositionVertical && this._playerPositionHorizontal === this._hatPositionHorizontal) {
             console.log(`Congratulations ${name}, you found the hat!`);
-            break;
+            return true
         }
     }
 
@@ -93,16 +108,30 @@ console.log(
 
 let myField = new Field(Field.generateField(7, 7));
 myField.print();
+myField.findHat();
 
 // Game Loop
 myField.move();
 myField.print();
+myField.checkWin();
 myField.move();
 myField.print();
-// myField.checkWin()
+myField.checkWin();
+myField.move();
+myField.print();
+myField.checkWin();
+myField.move();
+myField.print();
+myField.checkWin();
+myField.move();
+myField.print();
+myField.checkWin();
+myField.move();
+myField.print();
+myField.checkWin();
 
 // To Do:
 // - randomise field generations to include holes and the hat - DONE!
 // - incorporate movement and change field items to reflect exploration - DONE!
 // - Build game loop
-// - fix the hat position variable in the win condition
+// - fix the hat position variable in the win condition - DONE!
