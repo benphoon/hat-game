@@ -21,17 +21,16 @@ class Field {
         }
     }
 
-    findHat(){
-        let hatPosition = []
+    findHat() {
+        let hatPosition = [];
         for (var i = 0; i < this._fieldArray.length; i++) {
-            var index = this._fieldArray[i].indexOf('^');
+            var index = this._fieldArray[i].indexOf("^");
             if (index > -1) {
-                hatPosition = [i, index]
+                hatPosition = [i, index];
                 this._hatPositionVertical = hatPosition[0];
                 this._hatPositionHorizontal = hatPosition[1];
             }
         }
-        console.log(this._hatPositionVertical, this._hatPositionHorizontal)
     }
 
     move() {
@@ -64,9 +63,14 @@ class Field {
     }
 
     checkWin() {
-        if (this._playerPositionVertical === this._hatPositionVertical && this._playerPositionHorizontal === this._hatPositionHorizontal) {
+        if (
+            this._playerPositionVertical === this._hatPositionVertical &&
+            this._playerPositionHorizontal === this._hatPositionHorizontal
+        ) {
             console.log(`Congratulations ${name}, you found the hat!`);
-            return true
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -111,24 +115,10 @@ myField.print();
 myField.findHat();
 
 // Game Loop
-myField.move();
-myField.print();
-myField.checkWin();
-myField.move();
-myField.print();
-myField.checkWin();
-myField.move();
-myField.print();
-myField.checkWin();
-myField.move();
-myField.print();
-myField.checkWin();
-myField.move();
-myField.print();
-myField.checkWin();
-myField.move();
-myField.print();
-myField.checkWin();
+while (myField.checkWin() === false) {
+    myField.move();
+    myField.print();
+}
 
 // To Do:
 // - randomise field generations to include holes and the hat - DONE!
