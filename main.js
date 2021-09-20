@@ -123,5 +123,6 @@ while (myField.checkWin() === false) {
 // To Do:
 // - randomise field generations to include holes and the hat - DONE!
 // - incorporate movement and change field items to reflect exploration - DONE!
-// - Build game loop
+// - Build game loop - DONE!
 // - fix the hat position variable in the win condition - DONE!
+// - incorporate game loss functionality (ie falling in hole, out of bounds)
